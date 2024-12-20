@@ -99,6 +99,21 @@
                         <option value="Delizia Pizza Frita">Delizia Pizza Frita</option>
                         <option value="Di Calabria">Di Calabria</option>
                         <option value="Distrito Oriental">Distrito Oriental</option>
+                        <option value="Dona Jô">Dona Jô</option>
+                        <option value="Dons Pizza Artesanal">Dons Pizza Artesanal</option>
+                        <option value="Drogaria Master">Drogaria Master</option>
+                        <option value="Drogaria Messias">Drogaria Messias</option>
+                        <option value="Fazendinha Dom Bosco">Fazendinha Dom Bosco </option>
+                        <option value="La Pratelli">La Pratelli</option>
+                        <option value="Maria Fumaça">Maria Fumaça</option>
+                        <option value="O Sushi">O Sushi</option>
+                        <option value="Raiz Sushi">Raiz Sushi</option>
+                        <option value="Refinatto">Refinatto</option>
+                        <option value="Sesconecttos">Sesconecttos</option>
+                        <option value="Tokthe Sushi">Tokthe Sushi</option>
+
+
+
                         
                         
                     </select>
