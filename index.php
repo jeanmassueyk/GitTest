@@ -122,10 +122,10 @@
                     <label for="usuario" class="form-label">Usuário </label>
                     <select class="form-select inputstyle" id="usuario" name="usuario" required>
                         <option value="" selected disabled>Selecione</option>
-                        <option value="Usuário 1">Breno</option>
-                        <option value="Usuário 2">Carlos</option>
-                        <option value="Usuário 2">Jean Massueyk</option>
-                        <option value="Usuário 2">Luis</option>
+                        <option value="Breno">Breno</option>
+                        <option value="Carlos">Carlos</option>
+                        <option value="Jean Massueyk">Jean Massueyk</option>
+                        <option value="Luis">Luis</option>
                     </select>
                 </div>
             </div>
