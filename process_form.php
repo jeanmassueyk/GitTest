@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Verifica se o formulário foi enviado via POST
+// Verifica se o formulário foi enviado via POST UP
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Captura os dados enviados pelo formulário
     $nomeCliente = htmlspecialchars($_POST['nomeCliente']);
