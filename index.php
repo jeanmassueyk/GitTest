@@ -7,40 +7,75 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #121212;
-            color: white;
-        }
-        .form-label {
-            color: white;
-        }
-        .logo {
-            display: block;
-            margin: 0 auto;
-            max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
-            height: auto;
-        }
-        /* Estilização para todos os campos de entrada, textarea e select */
-        input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='tel'], textarea, select {
-            background-color: #2E2E2E;
-            color: white;
-            border: 1px solid #555;
-            border-radius: 4px; /* Adiciona bordas arredondadas */
-            padding: 8px; /* Adiciona espaçamento interno */
-        }
+       <style>
+    body {
+        background-color: #121212;
+        color: white;
+    }
 
-        /* Estilização para o estado de foco */
-        input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, input[type='number']:focus, input[type='tel']:focus, textarea:focus, select:focus {
-            background-color: #2E2E2E;
-            color: white;
-            outline: none;
-            border: 1px solid #777;
-        }
+    .form-label {
+        color: white;
+    }
 
-        /* Estilização específica para o botão */
-        button {
-            border-radius: 4px;
-        }
+    .logo {
+        display: block;
+        margin: 0 auto;
+        max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
+        height: auto;
+    }
+
+    /* Estilização para todos os campos de entrada, textarea e select */
+    input[type='text'], 
+    input[type='email'], 
+    input[type='password'], 
+    input[type='number'], 
+    input[type='tel'], 
+    textarea, 
+    select {
+        background-color: #2E2E2E;
+        color: white;
+        border: 1px solid #555;
+        border-radius: 4px; /* Adiciona bordas arredondadas */
+        padding: 8px; /* Adiciona espaçamento interno */
+        width: 100%; /* Garante que os campos ocupem toda a largura disponível */
+        box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
+    }
+
+    /* Estilização para o estado de foco */
+    input[type='text']:focus, 
+    input[type='email']:focus, 
+    input[type='password']:focus, 
+    input[type='number']:focus, 
+    input[type='tel']:focus, 
+    textarea:focus, 
+    select:focus {
+        background-color: #2E2E2E;
+        color: white;
+        outline: none;
+        border: 1px solid #777;
+    }
+
+    /* Estilização específica para o botão */
+    button {
+        border-radius: 4px;
+    }
+
+    /* Estilização para o select para evitar interferência do navegador */
+    select {
+        appearance: none; /* Remove o estilo padrão do navegador */
+        -webkit-appearance: none; /* Remove o estilo padrão no Safari/Chrome */
+        -moz-appearance: none; /* Remove o estilo padrão no Firefox */
+        background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="white" d="M2 0L0 2h4z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 10px;
+    }
+
+    /* Ajuste para o textarea */
+    textarea {
+        resize: none; /* Impede o redimensionamento do textarea */
+    }
+</style>
     </style>
 </head>
 <body>
