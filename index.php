@@ -20,20 +20,27 @@
             max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
             height: auto;
         }
-        input[type='text'], input[type='email'], input[type='password'], input[type='number'], textarea {
-    background-color: #2E2E2E;
-    color: white;
-    border: 1px solid #555;
-}
+        /* Estilização para todos os campos de entrada, textarea e select */
+        input[type='text'], input[type='email'], input[type='password'], input[type='number'], input[type='tel'], textarea, select {
+            background-color: #2E2E2E;
+            color: white;
+            border: 1px solid #555;
+            border-radius: 4px; /* Adiciona bordas arredondadas */
+            padding: 8px; /* Adiciona espaçamento interno */
+        }
 
-input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, input[type='number']:focus, textarea:focus {
-    background-color: #2E2E2E;
-    color: white;
-    outline: none;
-    border: 1px solid #777;
-}
+        /* Estilização para o estado de foco */
+        input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, input[type='number']:focus, input[type='tel']:focus, textarea:focus, select:focus {
+            background-color: #2E2E2E;
+            color: white;
+            outline: none;
+            border: 1px solid #777;
+        }
 
-
+        /* Estilização específica para o botão */
+        button {
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -92,8 +99,6 @@ input[type='text']:focus, input[type='email']:focus, input[type='password']:focu
                         <option value="Usuário 2">Carlos</option>
                         <option value="Usuário 2">Jean Massueyk</option>
                         <option value="Usuário 2">Luis</option>
-
-
                     </select>
                 </div>
             </div>
@@ -113,6 +118,4 @@ input[type='text']:focus, input[type='email']:focus, input[type='password']:focu
     </div>
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist
