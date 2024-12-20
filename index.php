@@ -74,8 +74,12 @@
                     <label for="usuario" class="form-label">Usuário *</label>
                     <select class="form-select" id="usuario" name="usuario" required>
                         <option value="" selected disabled>Selecione</option>
-                        <option value="Usuário 1">Usuário 1</option>
-                        <option value="Usuário 2">Usuário 2</option>
+                        <option value="Usuário 1">Breno</option>
+                        <option value="Usuário 2">Carlos</option>
+                        <option value="Usuário 2">Jean Massueyk</option>
+                        <option value="Usuário 2">Luis</option>
+
+
                     </select>
                 </div>
             </div>
