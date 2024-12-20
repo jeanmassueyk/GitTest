@@ -30,6 +30,7 @@
         .inputstyle:focus {
             background-color: #3A3A3A; /* Cor de fundo ao focar o campo */
             outline: none; /* Remove o contorno padrão */
+            color: white; /* Cor do texto para contraste */
         }
         /* Estilo para o span do Telefone do Cliente */
         .input-group-text {
