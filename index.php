@@ -25,9 +25,29 @@
             background-color: #2E2E2E; /* Cor de fundo */
             color: white; /* Cor do texto para contraste */
             border: 1px solid #444; /* Bordas para melhor visualização */
+            border-radius: 4px; /* Bordas arredondadas */
         }
         .inputstyle:focus {
             background-color: #3A3A3A; /* Cor de fundo ao focar o campo */
+            outline: none; /* Remove o contorno padrão */
+        }
+        /* Estilo para o span do Telefone do Cliente */
+        .input-group-text {
+            background-color: #2E2E2E; /* Cor de fundo */
+            color: white; /* Cor do texto */
+            border: 1px solid #444; /* Bordas */
+        }
+        /* Estilo para o select */
+        .form-select.inputstyle {
+            background-color: #2E2E2E; /* Cor de fundo */
+            color: white; /* Cor do texto */
+            border: 1px solid #444; /* Bordas */
+        }
+        /* Estilo para o textarea */
+        textarea.inputstyle {
+            background-color: #2E2E2E; /* Cor de fundo */
+            color: white; /* Cor do texto */
+            border: 1px solid #444; /* Bordas */
         }
     </style>
 </head>
@@ -67,13 +87,13 @@
                 <div class="col-md-4">
                     <label for="telefoneCliente" class="form-label">Telefone do Cliente </label>
                     <div class="input-group">
-                        <span class="input-group-text">+55</span>
+                        <span class="input-group-text inputstyle">+55</span>
                         <input type="tel" class="form-control inputstyle" id="telefoneCliente" name="telefoneCliente" required>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="estabelecimento" class="form-label">Estabelecimento </label>
-                    <select class="form-select" id="estabelecimento" name="estabelecimento" required>
+                    <select class="form-select inputstyle" id="estabelecimento" name="estabelecimento" required>
                         <option value="" selected disabled>Selecione</option>
                         <option value="Estabelecimento 1">Estabelecimento 1</option>
                         <option value="Estabelecimento 2">Estabelecimento 2</option>
@@ -81,7 +101,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="usuario" class="form-label">Usuário </label>
-                    <select class="form-select" id="usuario" name="usuario" required>
+                    <select class="form-select inputstyle" id="usuario" name="usuario" required>
                         <option value="" selected disabled>Selecione</option>
                         <option value="Usuário 1">Breno</option>
                         <option value="Usuário 2">Carlos</option>
@@ -94,7 +114,7 @@
             <!-- Área para colar -->
             <div class="mb-3">
                 <label for="areaColar" class="form-label">Área de copiar e colar</label>
-                <textarea class="form-control" id="areaColar" name="areaColar" rows="3"></textarea>
+                <textarea class="form-control inputstyle" id="areaColar" name="areaColar" rows="3"></textarea>
             </div>
 
             <!-- Botões -->
