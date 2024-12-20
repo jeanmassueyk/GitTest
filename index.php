@@ -20,9 +20,15 @@
             max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
             height: auto;
         }
-       
-
-
+        /* Estilo para a classe inputstyle */
+        .inputstyle {
+            background-color: #2E2E2E; /* Cor de fundo */
+            color: white; /* Cor do texto para contraste */
+            border: 1px solid #444; /* Bordas para melhor visualização */
+        }
+        .inputstyle:focus {
+            background-color: #3A3A3A; /* Cor de fundo ao focar o campo */
+        }
     </style>
 </head>
 <body>
@@ -37,22 +43,22 @@
             <!-- Nome do Cliente -->
             <div class="mb-3">
                 <label for="nomeCliente" class="form-label">Nome do Cliente</label>
-                <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required>
+                <input type="text" class="form-control inputstyle" id="nomeCliente" name="nomeCliente" required>
             </div>
 
             <!-- Endereço, Complemento e Número do Pedido -->
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="endereco" class="form-label">Endereço </label>
-                    <input type="text" class="form-control" id="endereco" name="endereco" required>
+                    <input type="text" class="form-control inputstyle" id="endereco" name="endereco" required>
                 </div>
                 <div class="col-md-4">
                     <label for="complemento" class="form-label">Complemento </label>
-                    <input type="text" class="form-control" id="complemento" name="complemento" required>
+                    <input type="text" class="form-control inputstyle" id="complemento" name="complemento" required>
                 </div>
                 <div class="col-md-4">
                     <label for="numeroPedido" class="form-label">Número do Pedido </label>
-                    <input type="text" class="form-control" id="numeroPedido" name="numeroPedido" required>
+                    <input type="text" class="form-control inputstyle" id="numeroPedido" name="numeroPedido" required>
                 </div>
             </div>
 
@@ -62,7 +68,7 @@
                     <label for="telefoneCliente" class="form-label">Telefone do Cliente </label>
                     <div class="input-group">
                         <span class="input-group-text">+55</span>
-                        <input type="tel" class="form-control" id="telefoneCliente" name="telefoneCliente" required>
+                        <input type="tel" class="form-control inputstyle" id="telefoneCliente" name="telefoneCliente" required>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -81,8 +87,6 @@
                         <option value="Usuário 2">Carlos</option>
                         <option value="Usuário 2">Jean Massueyk</option>
                         <option value="Usuário 2">Luis</option>
-
-
                     </select>
                 </div>
             </div>
