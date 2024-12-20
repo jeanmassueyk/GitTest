@@ -14,41 +14,39 @@
         .form-label {
             color: white;
         }
-        .logo {
-            display: block;
-            margin: 0 auto;
-            max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
-            height: auto;
+        /* Adicionando cor de fundo aos inputs */
+        input, textarea, select {
+            background-color: #2E2E2E;
+            color: white; /* Para garantir que o texto seja visível */
+            border: 1px solid #444; /* Opcional: borda para contraste */
+        }
+        input::placeholder, textarea::placeholder {
+            color: #aaa; /* Cor do placeholder para contraste */
         }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <!-- Logo -->
-        <div class="text-center mb-4">
-            <img src="https://sistemas.jeanmassueyk.com.br/GitTest/imgs/truvologo.png" alt="Logo" class="logo">
-        </div>
-
         <h1 class="text-center mb-4">Envio de Mensagem Automática What's App</h1>
         <form action="process_form.php" method="POST">
             <!-- Nome do Cliente -->
             <div class="mb-3">
-                <label for="nomeCliente" class="form-label">Nome do Cliente</label>
+                <label for="nomeCliente" class="form-label">Nome do Cliente *</label>
                 <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required>
             </div>
 
             <!-- Endereço, Complemento e Número do Pedido -->
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label for="endereco" class="form-label">Endereço </label>
+                    <label for="endereco" class="form-label">Endereço *</label>
                     <input type="text" class="form-control" id="endereco" name="endereco" required>
                 </div>
                 <div class="col-md-4">
-                    <label for="complemento" class="form-label">Complemento </label>
+                    <label for="complemento" class="form-label">Complemento *</label>
                     <input type="text" class="form-control" id="complemento" name="complemento" required>
                 </div>
                 <div class="col-md-4">
-                    <label for="numeroPedido" class="form-label">Número do Pedido </label>
+                    <label for="numeroPedido" class="form-label">Número do Pedido *</label>
                     <input type="text" class="form-control" id="numeroPedido" name="numeroPedido" required>
                 </div>
             </div>
@@ -56,14 +54,14 @@
             <!-- Telefone do Cliente, Estabelecimento e Usuário -->
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label for="telefoneCliente" class="form-label">Telefone do Cliente </label>
+                    <label for="telefoneCliente" class="form-label">Telefone do Cliente *</label>
                     <div class="input-group">
                         <span class="input-group-text">+55</span>
                         <input type="tel" class="form-control" id="telefoneCliente" name="telefoneCliente" required>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label for="estabelecimento" class="form-label">Estabelecimento </label>
+                    <label for="estabelecimento" class="form-label">Estabelecimento *</label>
                     <select class="form-select" id="estabelecimento" name="estabelecimento" required>
                         <option value="" selected disabled>Selecione</option>
                         <option value="Estabelecimento 1">Estabelecimento 1</option>
@@ -71,15 +69,11 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="usuario" class="form-label">Usuário </label>
+                    <label for="usuario" class="form-label">Usuário *</label>
                     <select class="form-select" id="usuario" name="usuario" required>
                         <option value="" selected disabled>Selecione</option>
-                        <option value="Usuário 1">Breno</option>
-                        <option value="Usuário 2">Carlos</option>
-                        <option value="Usuário 2">Jean Massueyk</option>
-                        <option value="Usuário 2">Luis</option>
-
-
+                        <option value="Usuário 1">Usuário 1</option>
+                        <option value="Usuário 2">Usuário 2</option>
                     </select>
                 </div>
             </div>
