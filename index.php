@@ -26,7 +26,7 @@
     <div class="container mt-5">
         <!-- Logo -->
         <div class="text-center mb-4">
-            <img src="/imgs/truvologo.png" alt="Logo" class="logo">
+            <img src="https://sistemas.jeanmassueyk.com.br/GitTest/imgs/truvologo.png" alt="Logo" class="logo">
         </div>
 
         <h1 class="text-center mb-4">Envio de Mensagem Automática What's App</h1>
