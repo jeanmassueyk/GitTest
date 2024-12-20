@@ -96,8 +96,11 @@
                     <label for="estabelecimento" class="form-label">Estabelecimento </label>
                     <select class="form-select inputstyle" id="estabelecimento" name="estabelecimento" required>
                         <option value="" selected disabled>Selecione</option>
-                        <option value="Estabelecimento 1">Estabelecimento 1</option>
-                        <option value="Estabelecimento 2">Estabelecimento 2</option>
+                        <option value="Delizia Pizza Frita">Delizia Pizza Frita</option>
+                        <option value="Di Calabria">Di Calabria</option>
+                        <option value="Distrito Oriental">Distrito Oriental</option>
+                        
+                        
                     </select>
                 </div>
                 <div class="col-md-4">
