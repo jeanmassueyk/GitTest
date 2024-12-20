@@ -20,6 +20,12 @@
             max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
             height: auto;
         }
+
+        input[type='text'], input[type='email'], input[type='password'], input[type='number'], textarea {
+        background-color: #2E2E2E;
+        color: white;
+    }
+
     </style>
 </head>
 <body>
