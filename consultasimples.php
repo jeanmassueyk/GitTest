@@ -12,7 +12,7 @@
 <body>
     <div class="container mt-4">
         <?php
-        session_start(); // Iniciar a sessão . Hello World
+        session_start(); // Iniciar a sessão . Hello World!!!!
 
         $servername = "127.0.0.1";
         $username = "root";
