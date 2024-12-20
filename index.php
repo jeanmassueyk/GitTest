@@ -14,10 +14,21 @@
         .form-label {
             color: white;
         }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
+            height: auto;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
+        <!-- Logo -->
+        <div class="text-center mb-4">
+            <img src="/imgs/truvologo.png" alt="Logo" class="logo">
+        </div>
+
         <h1 class="text-center mb-4">Envio de Mensagem Automática What's App</h1>
         <form action="process_form.php" method="POST">
             <!-- Nome do Cliente -->
