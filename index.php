@@ -33,22 +33,22 @@
         <form action="process_form.php" method="POST">
             <!-- Nome do Cliente -->
             <div class="mb-3">
-                <label for="nomeCliente" class="form-label">Nome do Cliente *</label>
+                <label for="nomeCliente" class="form-label">Nome do Cliente</label>
                 <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" required>
             </div>
 
             <!-- Endereço, Complemento e Número do Pedido -->
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label for="endereco" class="form-label">Endereço *</label>
+                    <label for="endereco" class="form-label">Endereço </label>
                     <input type="text" class="form-control" id="endereco" name="endereco" required>
                 </div>
                 <div class="col-md-4">
-                    <label for="complemento" class="form-label">Complemento *</label>
+                    <label for="complemento" class="form-label">Complemento </label>
                     <input type="text" class="form-control" id="complemento" name="complemento" required>
                 </div>
                 <div class="col-md-4">
-                    <label for="numeroPedido" class="form-label">Número do Pedido *</label>
+                    <label for="numeroPedido" class="form-label">Número do Pedido </label>
                     <input type="text" class="form-control" id="numeroPedido" name="numeroPedido" required>
                 </div>
             </div>
@@ -56,14 +56,14 @@
             <!-- Telefone do Cliente, Estabelecimento e Usuário -->
             <div class="row mb-3">
                 <div class="col-md-4">
-                    <label for="telefoneCliente" class="form-label">Telefone do Cliente *</label>
+                    <label for="telefoneCliente" class="form-label">Telefone do Cliente </label>
                     <div class="input-group">
                         <span class="input-group-text">+55</span>
                         <input type="tel" class="form-control" id="telefoneCliente" name="telefoneCliente" required>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label for="estabelecimento" class="form-label">Estabelecimento *</label>
+                    <label for="estabelecimento" class="form-label">Estabelecimento </label>
                     <select class="form-select" id="estabelecimento" name="estabelecimento" required>
                         <option value="" selected disabled>Selecione</option>
                         <option value="Estabelecimento 1">Estabelecimento 1</option>
@@ -71,7 +71,7 @@
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <label for="usuario" class="form-label">Usuário *</label>
+                    <label for="usuario" class="form-label">Usuário </label>
                     <select class="form-select" id="usuario" name="usuario" required>
                         <option value="" selected disabled>Selecione</option>
                         <option value="Usuário 1">Breno</option>
