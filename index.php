@@ -20,18 +20,19 @@
             max-width: 150px; /* Ajuste o tamanho da logo conforme necessário */
             height: auto;
         }
-        input[type='text'], input[type='email'], input[type='password'], input[type='number'], textarea, select {
+        input[type='text'], input[type='email'], input[type='password'], input[type='number'], textarea {
     background-color: #2E2E2E;
     color: white;
     border: 1px solid #555;
 }
 
-input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, input[type='number']:focus, textarea:focus, select:focus {
+input[type='text']:focus, input[type='email']:focus, input[type='password']:focus, input[type='number']:focus, textarea:focus {
     background-color: #2E2E2E;
     color: white;
     outline: none;
     border: 1px solid #777;
 }
+
 
     </style>
 </head>
