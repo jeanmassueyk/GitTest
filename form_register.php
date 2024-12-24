@@ -114,6 +114,35 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
+
+userForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = usernameInput.value;
+    const email = emailInput.value;
+
+    try {
+        const response = await fetch('validate_user.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }, // Define o cabeçalho como JSON
+            body: JSON.stringify({ username, email }) // Envia os dados no formato JSON
+        });
+
+        const result = await response.json();
+
+        if (result.usernameExists) {
+            usernameError.textContent = 'O nome de usuário já está em uso.';
+        } else if (result.emailExists) {
+            emailError.textContent = 'O e-mail já está em uso.';
+        } else {
+            // Submeter o formulário se não houver erros
+            userForm.submit();
+        }
+    } catch (error) {
+        console.error('Erro ao validar os dados:', error);
+    }
+});
         const userForm = document.getElementById('userForm');
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
@@ -148,35 +177,7 @@
             }
         });
 
-        // Submissão do formulário com validação no backend
-        userForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const username = usernameInput.value;
-            const email = emailInput.value;
-
-            try {
-                const response = await fetch('validate_user.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, email })
-                });
-
-                const result = await response.json();
-
-                if (result.usernameExists) {
-                    usernameError.textContent = 'O nome de usuário já está em uso.';
-                } else if (result.emailExists) {
-                    emailError.textContent = 'O e-mail já está em uso.';
-                } else {
-                    generalError.classList.add('d-none');
-                    userForm.submit();
-                }
-            } catch (error) {
-                console.error('Erro ao validar os dados:', error);
-                generalError.classList.remove('d-none');
-            }
-        });
+   
 
         // Alternar visibilidade da senha
         togglePassword.addEventListener('click', function () {
