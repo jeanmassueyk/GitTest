@@ -43,24 +43,33 @@
 
         <h1 class="text-center">Registro de Usuário</h1>
         <form id="userForm">
-            <!-- Campo Nome de Usuário com ícone -->
-            <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
+            <!-- Campo Nome de Usuário com label e ícone -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Nome de Usuário</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
+                </div>
                 <small id="usernameError" class="text-danger"></small>
             </div>
 
-            <!-- Campo E-mail com ícone -->
-            <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+            <!-- Campo E-mail com label e ícone -->
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+                </div>
                 <small id="emailError" class="text-danger"></small>
             </div>
 
-            <!-- Campo Senha com ícone -->
-            <div class="mb-3 input-group">
-                <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+            <!-- Campo Senha com label e ícone -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+                </div>
                 <small id="passwordError" class="text-danger"></small>
             </div>
 
