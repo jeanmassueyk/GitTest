@@ -34,6 +34,17 @@
         .input-group-text {
             background-color: #e9ecef;
         }
+        /* Alinhar os labels à esquerda */
+        .form-label {
+            text-align: left;
+            display: block;
+        }
+        /* Ajustar os botões */
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Espaçamento entre os botões */
+        }
     </style>
 </head>
 <body>
@@ -79,12 +90,9 @@
             </div>
 
             <!-- Botões de ação -->
-             <br>
-             <br>
-            <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-primary">Registrar</button>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Registrar</button>
                 <button type="reset" class="btn btn-secondary">Limpar</button>
-                
             </div>
         </form>
     </div>
