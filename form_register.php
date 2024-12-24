@@ -158,7 +158,7 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         </form>
 
         <?php if (!empty($success_message)): ?>
-            <div class="alert alert-success mt-3"><?= $success_message ?></div>
+            <div id="successMessage" class="alert alert-success mt-3"><?= $success_message ?></div>
         <?php endif; ?>
 
         <?php if (!empty($error_message)): ?>
@@ -197,6 +197,16 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
         window.addEventListener('load', function () {
             userForm.reset();
         });
+
+        // Remover mensagem de sucesso após 5 segundos com efeito de fade-out
+        const successMessage = document.getElementById('successMessage');
+        if (successMessage) {
+            setTimeout(() => {
+                successMessage.style.transition = 'opacity 1s';
+                successMessage.style.opacity = '0';
+                setTimeout(() => successMessage.remove(), 1000); // Remove o elemento após o fade-out
+            }, 5000);
+        }
     </script>
 </body>
 </html>
