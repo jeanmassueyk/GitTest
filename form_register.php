@@ -9,8 +9,26 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         /* Estilização personalizada */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #000000;
+            --form-bg-color: #ffffff;
+            --input-bg-color: #e9ecef;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Variáveis para o modo escuro */
+        .dark-mode {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --form-bg-color: #1e1e1e;
+            --input-bg-color: #2c2c2c;
+            --shadow-color: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            background-color: #f8f9fa;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Arial', sans-serif;
             height: 100vh;
             display: flex;
@@ -18,42 +36,62 @@
             align-items: center;
             margin: 0;
         }
+
         .form-container {
             min-width: 400px;
             max-width: 400px;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: var(--form-bg-color);
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px var(--shadow-color);
             text-align: center;
         }
+
         .form-container img {
             max-width: 150px;
             margin-bottom: 20px;
         }
+
         .input-group-text {
-            background-color: #e9ecef;
+            background-color: var(--input-bg-color);
         }
+
         /* Alinhar os labels à esquerda */
         .form-label {
             text-align: left;
             display: block;
         }
+
         /* Ajustar os botões */
         .button-group {
             display: flex;
             justify-content: center;
             gap: 10px; /* Espaçamento entre os botões */
         }
+
+        /* Botão do modo escuro */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <!-- Botão para alternar o modo escuro -->
+    <button class="btn btn-outline-secondary dark-mode-toggle" id="darkModeToggle">
+        <i class="bi bi-moon"></i> Modo Escuro
+    </button>
+
     <div class="form-container">
         <!-- Adicionando a logo -->
         <img src="https://truvo.com.br/_astro/logo.92936995.png" alt="Logo da Empresa" class="img-fluid">
+       
+        <h4 class="text-center">Registro de Usuário</h4>
         <br>
         <br>
-        <h5 class="text-center">Registro de Usuário</h5>
+
         <form id="userForm">
             <!-- Campo Nome de Usuário com label e ícone -->
             <div class="mb-3">
@@ -101,45 +139,18 @@
     </div>
 
     <script>
-        const userForm = document.getElementById('userForm');
-        const usernameInput = document.getElementById('username');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
-        const usernameError = document.getElementById('usernameError');
-        const emailError = document.getElementById('emailError');
-        const generalError = document.getElementById('generalError');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
 
-        userForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        // Alternar entre modo claro e escuro
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode'); // Adiciona ou remove a classe "dark-mode"
 
-            const username = usernameInput.value;
-            const email = emailInput.value;
-            const password = passwordInput.value;
-
-            try {
-                const response = await fetch('validate_user.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, email, password })
-                });
-
-                const result = await response.json();
-
-                if (result.usernameExists) {
-                    usernameError.textContent = 'O nome de usuário já está em uso.';
-                } else if (result.emailExists) {
-                    emailError.textContent = 'O e-mail já está em uso.';
-                } else if (result.success) {
-                    alert('Usuário registrado com sucesso!');
-                    window.location.href = 'sucess.php';
-                } else {
-                    generalError.classList.remove('d-none');
-                    generalError.textContent = result.message || 'Erro desconhecido.';
-                }
-            } catch (error) {
-                console.error('Erro ao validar os dados:', error);
-                generalError.classList.remove('d-none');
-                generalError.textContent = 'Erro ao processar a solicitação.';
+            // Atualizar o ícone e o texto do botão
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="bi bi-sun"></i> Modo Claro';
+            } else {
+                darkModeToggle.innerHTML = '<i class="bi bi-moon"></i> Modo Escuro';
             }
         });
     </script>
