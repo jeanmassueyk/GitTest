@@ -1,6 +1,6 @@
 <?php
 // Configuração do banco de dados
-$host = '192.168.176.5'; // Endereço do servidor do banco de dados
+$host = 'bb12ce777f6e'; // Endereço do servidor do banco de dados
 $dbname = 'lamp_db'; // Nome do banco de dados
 $username = 'user'; // Usuário do banco de dados
 $password = 'password'; // Senha do banco de dados
