@@ -1,9 +1,9 @@
 <?php
 // Configuração do banco de dados
-$host = 'localhost'; // Endereço do servidor do banco de dados
-$dbname = 'nome_do_banco'; // Nome do banco de dados
-$username = 'usuario_do_banco'; // Usuário do banco de dados
-$password = 'senha_do_banco'; // Senha do banco de dados
+$host = '192.168.176.5'; // Endereço do servidor do banco de dados
+$dbname = 'lamp_db'; // Nome do banco de dados
+$username = 'user'; // Usuário do banco de dados
+$password = 'password'; // Senha do banco de dados
 
 // Conexão com o banco de dados usando PDO
 try {
