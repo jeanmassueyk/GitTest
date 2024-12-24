@@ -18,11 +18,13 @@
             margin: 0;
         }
         .form-container {
+            min-width: 400px; /* Largura mínima de 400px */
             max-width: 500px;
             padding: 20px;
             background-color: #ffffff; /* Fundo branco para o formulário */
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+            text-align: center; /* Centralizar conteúdo */
         }
         .form-container h1 {
             font-size: 1.8rem;
@@ -53,10 +55,21 @@
         .toggle-password {
             cursor: pointer;
         }
+        .logo {
+            max-width: 100px; /* Tamanho máximo da logo */
+            margin-bottom: 20px;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Espaço entre os botões */
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
+        <!-- Adicionando a logo -->
+        <img src="logo.png" alt="Logo" class="logo">
         <h1 class="text-center">Registro de Usuário</h1>
         <form id="userForm" method="POST" action="">
             <div class="mb-3">
@@ -81,9 +94,10 @@
                     <span class="input-group-text toggle-password"><i class="bi bi-eye-slash" id="togglePasswordIcon"></i></span>
                 </div>
             </div>
-            <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary w-50 me-2">Inserir Usuário</button>
-                <button type="button" class="btn btn-secondary w-50" id="clearButton">Limpar</button>
+            <!-- Botões centralizados -->
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Inserir Usuário</button>
+                <button type="button" class="btn btn-secondary" id="clearButton">Limpar</button>
             </div>
         </form>
 
