@@ -17,6 +17,8 @@
             --btn-primary-border: #007bff;
             --btn-primary-hover-bg: #0056b3;
             --btn-primary-hover-border: #004085;
+            --input-bg: #ffffff;
+            --input-text: #333;
         }
 
         body {
@@ -46,7 +48,13 @@
         }
 
         .input-group-text {
-            background-color: var(--bg-color);
+            background-color: var(--input-bg);
+            color: var(--input-text);
+        }
+
+        .form-control {
+            background-color: var(--input-bg);
+            color: var(--input-text);
         }
 
         /* Estilos para o tema escuro */
@@ -58,6 +66,8 @@
             --btn-primary-border: #bb86fc;
             --btn-primary-hover-bg: #9b59b6;
             --btn-primary-hover-border: #8e44ad;
+            --input-bg: #2c2c2c;
+            --input-text: #ffffff;
         }
 
         .theme-toggle {
@@ -92,9 +102,8 @@
                 <label for="username" class="form-label">Nome de Usuário</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-user"></i></span>
-                    <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu nome de usuário" required>
                 </div>
-                <small id="usernameError" class="text-danger"></small>
             </div>
 
             <!-- Campo E-mail com label e ícone -->
@@ -102,9 +111,8 @@
                 <label for="email" class="form-label">E-mail</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                    <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
                 </div>
-                <small id="emailError" class="text-danger"></small>
             </div>
 
             <!-- Campo Senha com label e ícone -->
@@ -112,17 +120,11 @@
                 <label for="password" class="form-label">Senha</label>
                 <div class="input-group">
                     <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                    <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
                     <span class="input-group-text">
                         <i class="fas fa-eye" id="togglePassword" style="cursor: pointer;"></i>
                     </span>
                 </div>
-                <small id="passwordError" class="text-danger"></small>
-            </div>
-
-            <!-- Mensagem de erro geral -->
-            <div id="generalError" class="alert alert-danger d-none" role="alert">
-                Ocorreu um erro. Tente novamente mais tarde.
             </div>
 
             <!-- Botões de ação -->
@@ -143,20 +145,15 @@
         const passwordField = document.querySelector('#password');
 
         togglePassword.addEventListener('click', function () {
-            // Alterna o tipo do campo de senha
             const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordField.setAttribute('type', type);
-
-            // Alterna o ícone
             this.classList.toggle('fa-eye');
             this.classList.toggle('fa-eye-slash');
         });
 
-        // Dark Mode Toggle
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
-        // Carregar tema salvo no localStorage
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
             body.classList.add(savedTheme);
@@ -180,6 +177,15 @@
                 icon.classList.add('fa-moon');
             }
         }
+
+        // Envio do formulário
+        const form = document.getElementById('userForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // Evita o envio padrão
+            const formData = new FormData(form);
+            console.log('Dados enviados:', Object.fromEntries(formData));
+            alert('Formulário enviado com sucesso!');
+        });
     </script>
 </body>
 </html>
