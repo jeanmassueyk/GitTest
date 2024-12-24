@@ -52,7 +52,7 @@
         <!-- Adicionando a logo -->
         <img src="https://truvo.com.br/_astro/logo.92936995.png" alt="Logo da Empresa" class="img-fluid">
 
-        <h1 class="text-center">Registro de Usuário</h1>
+        <h5 class="text-center">Registro de Usuário</h5>
         <form id="userForm">
             <!-- Campo Nome de Usuário com label e ícone -->
             <div class="mb-3">
@@ -91,6 +91,8 @@
 
             <!-- Botões de ação -->
             <div class="button-group">
+                <br>
+                <br>
                 <button type="submit" class="btn btn-primary">Registrar</button>
                 <button type="reset" class="btn btn-secondary">Limpar</button>
             </div>
