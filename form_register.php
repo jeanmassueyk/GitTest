@@ -114,9 +114,14 @@
     <div class="form-container">
         <!-- Adicionando a logo -->
         <img src="https://truvo.com.br/_astro/logo.92936995.png" alt="Logo da Empresa" class="img-fluid">
+<<<<<<< HEAD
         <br>
         <br>
         <h5 class="text-center">Registro de Usuário</h5>
+=======
+
+        <h1 class="text-center">Registro de Usuário</h1>
+>>>>>>> parent of 1055c64 (Update form_register.php)
         <form id="userForm">
             <!-- Campo Nome de Usuário com label e ícone -->
             <div class="mb-3">
@@ -149,9 +154,13 @@
             </div>
 
             <!-- Botões de ação -->
+<<<<<<< HEAD
             <br>
             <br>
             <div class="d-flex justify-content-center gap-2">
+=======
+            <div class="button-group">
+>>>>>>> parent of 1055c64 (Update form_register.php)
                 <button type="submit" class="btn btn-primary">Registrar</button>
                 <button type="reset" class="btn btn-secondary">Limpar</button>
             </div>
