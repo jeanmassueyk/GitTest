@@ -74,7 +74,7 @@
     <div class="form-container">
         <img src="https://sistemas.jeanmassueyk.com.br/GitTest/imgs/truvologo.png" alt="Logo" class="logo">
         <h1 class="text-center">Registro de Usuário</h1>
-        <form id="userForm" method="POST" action="register.php">
+        <form id="userForm" method="POST" action="validade_user.php">
             <div class="mb-3">
                 <label for="username" class="form-label">Nome de Usuário</label>
                 <div class="input-group">
