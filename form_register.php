@@ -1,53 +1,3 @@
-<?php
-// Processamento do formulário
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Conexão com o banco de dados
-    $host = 'bb12ce777f6e';
-    $dbname = 'lamp_db';
-    $dbuser = 'user';  // substitua pelo usuário do banco de dados, se necessário
-    $dbpassword = 'password';
-
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Validação básica
-    if (!empty($username) && !empty($email) && !empty($password)) {
-        // Criptografar a senha (usando password_hash)
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // Inserir os dados
-            $sql = "INSERT INTO usuarios (username, email, password) VALUES (:username, :email, :password)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':username', $username);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':password', $hashed_password);
-
-            if ($stmt->execute()) {
-                // Redirecionar para evitar reenvio do formulário
-                header('Location: ' . $_SERVER['PHP_SELF'] . '?success=1');
-                exit;
-            } else {
-                $error_message = "Erro ao inserir o usuário.";
-            }
-        } catch (PDOException $e) {
-            $error_message = "Erro de conexão: " . $e->getMessage();
-        }
-    } else {
-        $error_message = "Por favor, preencha todos os campos.";
-    }
-}
-
-// Exibir mensagem de sucesso, se aplicável
-$success_message = '';
-if (isset($_GET['success']) && $_GET['success'] == 1) {
-    $success_message = "Usuário inserido com sucesso!";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -157,13 +107,40 @@ if (isset($_GET['success']) && $_GET['success'] == 1) {
             </div>
         </form>
 
-        <?php if (!empty($success_message)): ?>
-            <div id="successMessage" class="alert alert-success mt-3"><?= $success_message ?></div>
-        <?php endif; ?>
-
-        <?php if (!empty($error_message)): ?>
-            <div class="alert alert-danger mt-3"><?= $error_message ?></div>
-        <?php endif; ?>
+        
     </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Ícones do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+        // Alternar visibilidade da senha
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Alternar ícone
+            togglePasswordIcon.classList.toggle('bi-eye');
+            togglePasswordIcon.classList.toggle('bi-eye-slash');
+        });
+
+        // Botão de limpar
+        const clearButton = document.getElementById('clearButton');
+        const userForm = document.getElementById('userForm');
+
+        clearButton.addEventListener('click', function () {
+            userForm.reset();
+        });
+
+        // Limpar formulário ao carregar a página
+        window.addEventListener('load', function () {
+            userForm.reset();
+        });
+    </script>
 </body>
 </html>
