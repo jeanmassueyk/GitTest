@@ -39,7 +39,7 @@
 <body>
     <div class="form-container">
         <!-- Adicionando a logo -->
-        <img src="https://via.placeholder.com/150" alt="Logo da Empresa" class="img-fluid">
+        <img src="https://truvo.com.br/_astro/logo.92936995.png" alt="Logo da Empresa" class="img-fluid">
 
         <h1 class="text-center">Registro de Usuário</h1>
         <form id="userForm">
