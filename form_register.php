@@ -18,7 +18,7 @@
             margin: 0;
         }
         .form-container {
-            min-width: 400px; /* Largura mínima de 400px */
+            min-width: 510px; /* Largura mínima de 510px */
             max-width: 500px;
             padding: 20px;
             background-color: #ffffff; /* Fundo branco para o formulário */
@@ -63,6 +63,10 @@
             display: flex;
             justify-content: center;
             gap: 10px; /* Espaço entre os botões */
+        }
+        .form-label {
+            text-align: left; /* Alinhar os labels à esquerda */
+            display: block; /* Garantir que o label ocupe toda a largura */
         }
     </style>
 </head>
