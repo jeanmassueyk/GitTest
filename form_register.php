@@ -36,6 +36,19 @@
         .alert {
             font-size: 0.9rem;
         }
+        .input-group-text {
+            background-color: #f8f9fa;
+            border-right: none;
+        }
+        .form-control {
+            border-left: none;
+        }
+        .input-group .form-control:focus {
+            box-shadow: none;
+        }
+        .toggle-password {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -45,15 +58,25 @@
             <form method="POST" action="">
                 <div class="mb-3">
                     <label for="username" class="form-label">Nome de Usuário</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu nome de usuário" required>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                        <span class="input-group-text toggle-password"><i class="bi bi-eye-slash" id="togglePasswordIcon"></i></span>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Inserir Usuário</button>
             </form>
@@ -104,5 +127,22 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Ícones do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+        // Alternar visibilidade da senha
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Alternar ícone
+            togglePasswordIcon.classList.toggle('bi-eye');
+            togglePasswordIcon.classList.toggle('bi-eye-slash');
+        });
+    </script>
 </body>
 </html>
