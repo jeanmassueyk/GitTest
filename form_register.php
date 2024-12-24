@@ -69,7 +69,7 @@
 <body>
     <div class="form-container">
         <!-- Adicionando a logo -->
-        <img src="logo.png" alt="Logo" class="logo">
+        <img src="https://sistemas.jeanmassueyk.com.br/GitTest/imgs/truvologo.png" alt="Logo" class="logo">
         <h1 class="text-center">Registro de Usuário</h1>
         <form id="userForm" method="POST" action="">
             <div class="mb-3">
