@@ -90,9 +90,9 @@
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Conexão com o banco de dados
-            $host = '';
-            $dbname = '';
-            $dbuser = '';  // substitua pelo usuário do banco de dados, se necessário
+            $host = 'bb12ce777f6e';
+            $dbname = 'user';
+            $dbuser = 'password';  // substitua pelo usuário do banco de dados, se necessário
             $dbpassword = '';
 
             $username = $_POST['username'];
