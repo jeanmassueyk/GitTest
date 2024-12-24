@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
+        /* Estilização personalizada */
         body {
             background-color: #f8f9fa;
             font-family: 'Arial', sans-serif;
@@ -18,52 +19,61 @@
             margin: 0;
         }
         .form-container {
-            width: 100%;
+            min-width: 400px;
             max-width: 400px;
             padding: 20px;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        .form-container h1 {
-            font-size: 1.8rem;
+        .form-container img {
+            max-width: 150px;
             margin-bottom: 20px;
         }
-        .btn-primary {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+        .input-group-text {
+            background-color: #e9ecef;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
+        <!-- Adicionando a logo -->
+        <img src="https://via.placeholder.com/150" alt="Logo da Empresa" class="img-fluid">
+
         <h1 class="text-center">Registro de Usuário</h1>
-        <form id="userForm" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label">Nome de Usuário</label>
+        <form id="userForm">
+            <!-- Campo Nome de Usuário com ícone -->
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="bi bi-person"></i></span>
                 <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
-                <div class="invalid-feedback">Por favor, insira um nome de usuário válido.</div>
-                <div class="valid-feedback">Nome de usuário válido!</div>
+                <small id="usernameError" class="text-danger"></small>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
+
+            <!-- Campo E-mail com ícone -->
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                 <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
-                <div class="invalid-feedback">Por favor, insira um e-mail válido.</div>
-                <div class="valid-feedback">E-mail válido!</div>
+                <small id="emailError" class="text-danger"></small>
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
+
+            <!-- Campo Senha com ícone -->
+            <div class="mb-3 input-group">
+                <span class="input-group-text"><i class="bi bi-lock"></i></span>
                 <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
-                <div class="invalid-feedback">A senha deve ter pelo menos 6 caracteres.</div>
+                <small id="passwordError" class="text-danger"></small>
             </div>
+
+            <!-- Mensagem de erro geral -->
             <div id="generalError" class="alert alert-danger d-none" role="alert">
                 Ocorreu um erro. Tente novamente mais tarde.
             </div>
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-person-plus"></i> Registrar
-            </button>
+
+            <!-- Botões de ação -->
+            <div class="d-flex justify-content-between">
+                <button type="reset" class="btn btn-secondary">Limpar</button>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
         </form>
     </div>
 
@@ -72,46 +82,16 @@
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
+        const usernameError = document.getElementById('usernameError');
+        const emailError = document.getElementById('emailError');
         const generalError = document.getElementById('generalError');
 
         userForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            // Resetando feedback visual
-            usernameInput.classList.remove('is-invalid', 'is-valid');
-            emailInput.classList.remove('is-invalid', 'is-valid');
-            passwordInput.classList.remove('is-invalid', 'is-valid');
-            generalError.classList.add('d-none');
-
-            const username = usernameInput.value.trim();
-            const email = emailInput.value.trim();
-            const password = passwordInput.value.trim();
-
-            let isValid = true;
-
-            // Validação básica no frontend
-            if (username.length < 3) {
-                usernameInput.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                usernameInput.classList.add('is-valid');
-            }
-
-            if (!email.includes('@') || email.length < 5) {
-                emailInput.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                emailInput.classList.add('is-valid');
-            }
-
-            if (password.length < 6) {
-                passwordInput.classList.add('is-invalid');
-                isValid = false;
-            } else {
-                passwordInput.classList.add('is-valid');
-            }
-
-            if (!isValid) return;
+            const username = usernameInput.value;
+            const email = emailInput.value;
+            const password = passwordInput.value;
 
             try {
                 const response = await fetch('validate_user.php', {
@@ -123,11 +103,9 @@
                 const result = await response.json();
 
                 if (result.usernameExists) {
-                    usernameInput.classList.add('is-invalid');
-                    usernameInput.nextElementSibling.textContent = 'O nome de usuário já está em uso.';
+                    usernameError.textContent = 'O nome de usuário já está em uso.';
                 } else if (result.emailExists) {
-                    emailInput.classList.add('is-invalid');
-                    emailInput.nextElementSibling.textContent = 'O e-mail já está em uso.';
+                    emailError.textContent = 'O e-mail já está em uso.';
                 } else if (result.success) {
                     alert('Usuário registrado com sucesso!');
                     window.location.href = 'sucess.php';
