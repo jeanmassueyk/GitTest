@@ -108,46 +108,53 @@
         </form>
 
         <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Conexão com o banco de dados
-            $host = 'bb12ce777f6e';
-            $dbname = 'lamp_db';
-            $dbuser = 'user';  // substitua pelo usuário do banco de dados, se necessário
-            $dbpassword = 'password';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Conexão com o banco de dados
+    $host = 'bb12ce777f6e';
+    $dbname = 'lamp_db';
+    $dbuser = 'user';  // substitua pelo usuário do banco de dados, se necessário
+    $dbpassword = 'password';
 
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-            // Validação básica
-            if (!empty($username) && !empty($email) && !empty($password)) {
-                // Criptografar a senha (usando password_hash)
-                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+    // Validação básica
+    if (!empty($username) && !empty($email) && !empty($password)) {
+        // Criptografar a senha (usando password_hash)
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-                try {
-                    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                    // Inserir os dados
-                    $sql = "INSERT INTO usuarios (username, email, password) VALUES (:username, :email, :password)";
-                    $stmt = $pdo->prepare($sql);
-                    $stmt->bindParam(':username', $username);
-                    $stmt->bindParam(':email', $email);
-                    $stmt->bindParam(':password', $hashed_password);
+            // Inserir os dados
+            $sql = "INSERT INTO usuarios (username, email, password) VALUES (:username, :email, :password)";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hashed_password);
 
-                    if ($stmt->execute()) {
-                        echo "<div class='alert alert-success mt-3'>Usuário inserido com sucesso!</div>";
-                    } else {
-                        echo "<div class='alert alert-danger mt-3'>Erro ao inserir o usuário.</div>";
-                    }
-                } catch (PDOException $e) {
-                    echo "<div class='alert alert-danger mt-3'>Erro de conexão: " . $e->getMessage() . "</div>";
-                }
+            if ($stmt->execute()) {
+                // Redirecionar para evitar reenvio do formulário
+                header('Location: ' . $_SERVER['PHP_SELF'] . '?success=1');
+                exit;
             } else {
-                echo "<div class='alert alert-danger mt-3'>Por favor, preencha todos os campos.</div>";
+                echo "<div class='alert alert-danger mt-3'>Erro ao inserir o usuário.</div>";
             }
+        } catch (PDOException $e) {
+            echo "<div class='alert alert-danger mt-3'>Erro de conexão: " . $e->getMessage() . "</div>";
         }
-        ?>
+    } else {
+        echo "<div class='alert alert-danger mt-3'>Por favor, preencha todos os campos.</div>";
+    }
+}
+
+// Exibir mensagem de sucesso, se aplicável
+if (isset($_GET['success']) && $_GET['success'] == 1) {
+    echo "<div class='alert alert-success mt-3'>Usuário inserido com sucesso!</div>";
+}
+?>
     </div>
 
     <!-- Bootstrap JS -->
