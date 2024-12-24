@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Inserir Usuário</h1>
+        <h1 class="text-center">Registro de Usuário</h1>
         <form method="POST" action="">
             <div class="mb-3">
                 <label for="username" class="form-label">Nome de Usuário</label>
