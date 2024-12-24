@@ -30,8 +30,8 @@
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Conexão com o banco de dados
             $host = 'bb12ce777f6e';
-            $dbname = 'user';
-            $dbuser = 'root';  // substitua pelo usuário do banco de dados, se necessário
+            $dbname = 'lamp_db';
+            $dbuser = 'user';  // substitua pelo usuário do banco de dados, se necessário
             $dbpassword = 'password';
 
             $username = $_POST['username'];
