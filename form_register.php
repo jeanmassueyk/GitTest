@@ -99,6 +99,8 @@
                 </div>
             </div>
             <!-- Botões centralizados -->
+             <br>
+             <br>
             <div class="button-group">
                 <button type="submit" class="btn btn-primary">Inserir Usuário</button>
                 <button type="button" class="btn btn-secondary" id="clearButton">Limpar</button>
