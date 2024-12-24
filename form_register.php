@@ -79,9 +79,12 @@
             </div>
 
             <!-- Botões de ação -->
+             <br>
+             <br>
             <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Registrar</button>
                 <button type="reset" class="btn btn-secondary">Limpar</button>
-                <button type="submit" class="btn btn-primary">Registrar</button>
+                
             </div>
         </form>
     </div>
