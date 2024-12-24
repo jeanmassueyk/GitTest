@@ -27,173 +27,75 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .form-container h1 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #343a40;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-        .alert {
-            font-size: 0.9rem;
-        }
-        .input-group-text {
-            background-color: #f8f9fa;
-            border-right: none;
-        }
-        .form-control {
-            border-left: none;
-        }
-        .input-group .form-control:focus {
-            box-shadow: none;
-        }
-        .toggle-password {
-            cursor: pointer;
-        }
-        .logo {
-            max-width: 100px;
-            margin-bottom: 20px;
-        }
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .form-label {
-            text-align: left;
-            display: block;
-        }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <img src="https://sistemas.jeanmassueyk.com.br/GitTest/imgs/truvologo.png" alt="Logo" class="logo">
         <h1 class="text-center">Registro de Usuário</h1>
-        <form id="userForm" method="POST" action="validate_user.php">
+        <form id="userForm">
             <div class="mb-3">
                 <label for="username" class="form-label">Nome de Usuário</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu nome de usuário" required>
-                </div>
+                <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário" required>
                 <small id="usernameError" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
-                </div>
+                <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail" required>
                 <small id="emailError" class="text-danger"></small>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Senha</label>
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
-                    <span class="input-group-text toggle-password"><i class="bi bi-eye-slash" id="togglePasswordIcon"></i></span>
-                </div>
+                <input type="password" class="form-control" id="password" placeholder="Digite sua senha" required>
                 <small id="passwordError" class="text-danger"></small>
             </div>
             <div id="generalError" class="alert alert-danger d-none" role="alert">
                 Ocorreu um erro. Tente novamente mais tarde.
             </div>
-            <div class="button-group">
-                <button type="submit" class="btn btn-primary">Inserir Usuário</button>
-                <button type="button" class="btn btn-secondary" id="clearButton">Limpar</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
         </form>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-
-
-userForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const username = usernameInput.value;
-    const email = emailInput.value;
-
-    try {
-        const response = await fetch('validate_user.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }, // Define o cabeçalho como JSON
-            body: JSON.stringify({ username, email }) // Envia os dados no formato JSON
-        });
-
-        const result = await response.json();
-
-        if (result.usernameExists) {
-            usernameError.textContent = 'O nome de usuário já está em uso.';
-        } else if (result.emailExists) {
-            emailError.textContent = 'O e-mail já está em uso.';
-        } else {
-            // Submeter o formulário se não houver erros
-            userForm.submit();
-        }
-    } catch (error) {
-        console.error('Erro ao validar os dados:', error);
-    }
-});
         const userForm = document.getElementById('userForm');
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const usernameError = document.getElementById('usernameError');
         const emailError = document.getElementById('emailError');
-        const passwordError = document.getElementById('passwordError');
         const generalError = document.getElementById('generalError');
-        const clearButton = document.getElementById('clearButton');
-        const togglePassword = document.querySelector('.toggle-password');
-        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
 
-        // Validação de nome de usuário
-        usernameInput.addEventListener('input', () => {
+        userForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
             const username = usernameInput.value;
-            const regex = /^[a-z0-9]+$/;
-            if (!regex.test(username)) {
-                usernameError.textContent = 'O nome de usuário deve conter apenas letras minúsculas e números.';
-            } else {
-                usernameError.textContent = '';
-            }
-        });
-
-        // Validação de senha
-        passwordInput.addEventListener('input', () => {
+            const email = emailInput.value;
             const password = passwordInput.value;
-            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            if (!regex.test(password)) {
-                passwordError.textContent = 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.';
-            } else {
-                passwordError.textContent = '';
+
+            try {
+                const response = await fetch('validate_user.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const result = await response.json();
+
+                if (result.usernameExists) {
+                    usernameError.textContent = 'O nome de usuário já está em uso.';
+                } else if (result.emailExists) {
+                    emailError.textContent = 'O e-mail já está em uso.';
+                } else if (result.success) {
+                    alert('Usuário registrado com sucesso!');
+                    window.location.href = 'sucess.php';
+                } else {
+                    generalError.classList.remove('d-none');
+                    generalError.textContent = result.message || 'Erro desconhecido.';
+                }
+            } catch (error) {
+                console.error('Erro ao validar os dados:', error);
+                generalError.classList.remove('d-none');
+                generalError.textContent = 'Erro ao processar a solicitação.';
             }
-        });
-
-   
-
-        // Alternar visibilidade da senha
-        togglePassword.addEventListener('click', function () {
-            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-            passwordInput.setAttribute('type', type);
-            togglePasswordIcon.classList.toggle('bi-eye');
-            togglePasswordIcon.classList.toggle('bi-eye-slash');
-        });
-
-        // Botão de limpar
-        clearButton.addEventListener('click', function () {
-            userForm.reset();
-            usernameError.textContent = '';
-            emailError.textContent = '';
-            passwordError.textContent = '';
-            generalError.classList.add('d-none');
         });
     </script>
 </body>

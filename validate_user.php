@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $input = json_decode(file_get_contents('php://input'), true);
 
         // Verifica se os campos necessários foram enviados
-        if (!isset($input['username']) || !isset($input['email'])) {
+        if (!isset($input['username']) || !isset($input['email']) || !isset($input['password'])) {
             http_response_code(400);
             echo json_encode(['error' => 'Dados incompletos.']);
             exit;
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $username = trim($input['username']);
         $email = trim($input['email']);
+        $password = trim($input['password']);
 
         // Validação básica no backend
         if (!preg_match('/^[a-z0-9]+$/', $username)) {
@@ -55,14 +56,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute(['email' => $email]);
             $emailExists = $stmt->fetchColumn() > 0;
 
-            // Retorna o resultado da validação
-            echo json_encode([
-                'usernameExists' => $usernameExists,
-                'emailExists' => $emailExists
-            ]);
+            if ($usernameExists || $emailExists) {
+                // Retorna o resultado da validação
+                echo json_encode([
+                    'usernameExists' => $usernameExists,
+                    'emailExists' => $emailExists
+                ]);
+            } else {
+                // Insere o usuário no banco de dados
+                $hashedPassword = password_hash($password, PASSWORD_BCRYPT); // Criptografa a senha
+                $stmt = $pdo->prepare('INSERT INTO usuarios (username, email, password) VALUES (:username, :email, :password)');
+                $stmt->execute([
+                    'username' => $username,
+                    'email' => $email,
+                    'password' => $hashedPassword
+                ]);
+
+                echo json_encode(['success' => true, 'message' => 'Usuário registrado com sucesso.']);
+            }
         } catch (PDOException $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'Erro ao consultar o banco de dados.']);
+            echo json_encode(['error' => 'Erro ao consultar ou inserir no banco de dados.']);
         }
     } else {
         http_response_code(400);
