@@ -6,6 +6,7 @@
     <title>Registro de Usuário</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         /* Estilização personalizada */
         body {
@@ -74,7 +75,7 @@
     <div class="form-container">
         <img src="https://sistemas.jeanmassueyk.com.br/GitTest/imgs/truvologo.png" alt="Logo" class="logo">
         <h1 class="text-center">Registro de Usuário</h1>
-        <form id="userForm" method="POST" action="validade_user.php">
+        <form id="userForm" method="POST" action="validate_user.php">
             <div class="mb-3">
                 <label for="username" class="form-label">Nome de Usuário</label>
                 <div class="input-group">
@@ -98,9 +99,11 @@
                     <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
                     <span class="input-group-text toggle-password"><i class="bi bi-eye-slash" id="togglePasswordIcon"></i></span>
                 </div>
+                <small id="passwordError" class="text-danger"></small>
             </div>
-            <br>
-            <br>
+            <div id="generalError" class="alert alert-danger d-none" role="alert">
+                Ocorreu um erro. Tente novamente mais tarde.
+            </div>
             <div class="button-group">
                 <button type="submit" class="btn btn-primary">Inserir Usuário</button>
                 <button type="button" class="btn btn-secondary" id="clearButton">Limpar</button>
@@ -110,15 +113,20 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script>
         const userForm = document.getElementById('userForm');
         const usernameInput = document.getElementById('username');
         const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
         const usernameError = document.getElementById('usernameError');
         const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const generalError = document.getElementById('generalError');
+        const clearButton = document.getElementById('clearButton');
+        const togglePassword = document.querySelector('.toggle-password');
+        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
 
-        // Validação de nome de usuário (somente letras minúsculas e números)
+        // Validação de nome de usuário
         usernameInput.addEventListener('input', () => {
             const username = usernameInput.value;
             const regex = /^[a-z0-9]+$/;
@@ -129,7 +137,18 @@
             }
         });
 
-        // Validação de e-mail e nome de usuário no banco de dados
+        // Validação de senha
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!regex.test(password)) {
+                passwordError.textContent = 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e caracteres especiais.';
+            } else {
+                passwordError.textContent = '';
+            }
+        });
+
+        // Submissão do formulário com validação no backend
         userForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -150,31 +169,30 @@
                 } else if (result.emailExists) {
                     emailError.textContent = 'O e-mail já está em uso.';
                 } else {
-                    // Submeter o formulário se não houver erros
+                    generalError.classList.add('d-none');
                     userForm.submit();
                 }
             } catch (error) {
                 console.error('Erro ao validar os dados:', error);
+                generalError.classList.remove('d-none');
             }
         });
 
         // Alternar visibilidade da senha
-        const togglePassword = document.querySelector('.toggle-password');
-        const passwordInput = document.getElementById('password');
-        const togglePasswordIcon = document.getElementById('togglePasswordIcon');
-
         togglePassword.addEventListener('click', function () {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-
             togglePasswordIcon.classList.toggle('bi-eye');
             togglePasswordIcon.classList.toggle('bi-eye-slash');
         });
 
         // Botão de limpar
-        const clearButton = document.getElementById('clearButton');
         clearButton.addEventListener('click', function () {
             userForm.reset();
+            usernameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            generalError.classList.add('d-none');
         });
     </script>
 </body>
