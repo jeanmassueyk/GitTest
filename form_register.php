@@ -18,8 +18,8 @@
             margin: 0;
         }
         .form-container {
-            min-width: 510px; /* Largura mínima de 510px */
-            max-width: 500px;
+            min-width: 400px; /* Largura mínima de 510px */
+            max-width: 400px;
             padding: 20px;
             background-color: #ffffff; /* Fundo branco para o formulário */
             border-radius: 8px;
