@@ -11,10 +11,14 @@
         body {
             background-color: #f8f9fa; /* Fundo claro para contraste */
             font-family: 'Arial', sans-serif;
+            height: 100vh; /* Altura total da viewport */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
         }
         .form-container {
             max-width: 500px;
-            margin: 50px auto;
             padding: 20px;
             background-color: #ffffff; /* Fundo branco para o formulário */
             border-radius: 8px;
@@ -52,77 +56,78 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="form-container">
-            <h1 class="text-center">Registro de Usuário</h1>
-            <form method="POST" action="">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Nome de Usuário</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu nome de usuário" required>
-                    </div>
+    <div class="form-container">
+        <h1 class="text-center">Registro de Usuário</h1>
+        <form id="userForm" method="POST" action="">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nome de Usuário</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite seu nome de usuário" required>
                 </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">E-mail</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
-                    </div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu e-mail" required>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Senha</label>
-                    <div class="input-group">
-                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
-                        <span class="input-group-text toggle-password"><i class="bi bi-eye-slash" id="togglePasswordIcon"></i></span>
-                    </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Digite sua senha" required>
+                    <span class="input-group-text toggle-password"><i class="bi bi-eye-slash" id="togglePasswordIcon"></i></span>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Inserir Usuário</button>
-            </form>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary w-50 me-2">Inserir Usuário</button>
+                <button type="button" class="btn btn-secondary w-50" id="clearButton">Limpar</button>
+            </div>
+        </form>
 
-            <?php
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Conexão com o banco de dados
-                $host = '';
-                $dbname = '';
-                $dbuser = '';  // substitua pelo usuário do banco de dados, se necessário
-                $dbpassword = '';
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Conexão com o banco de dados
+            $host = '';
+            $dbname = '';
+            $dbuser = '';  // substitua pelo usuário do banco de dados, se necessário
+            $dbpassword = '';
 
-                $username = $_POST['username'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
-                // Validação básica
-                if (!empty($username) && !empty($email) && !empty($password)) {
-                    // Criptografar a senha (usando password_hash)
-                    $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+            // Validação básica
+            if (!empty($username) && !empty($email) && !empty($password)) {
+                // Criptografar a senha (usando password_hash)
+                $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
-                    try {
-                        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                try {
+                    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpassword);
+                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                        // Inserir os dados
-                        $sql = "INSERT INTO usuarios (username, email, password) VALUES (:username, :email, :password)";
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindParam(':username', $username);
-                        $stmt->bindParam(':email', $email);
-                        $stmt->bindParam(':password', $hashed_password);
+                    // Inserir os dados
+                    $sql = "INSERT INTO usuarios (username, email, password) VALUES (:username, :email, :password)";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(':username', $username);
+                    $stmt->bindParam(':email', $email);
+                    $stmt->bindParam(':password', $hashed_password);
 
-                        if ($stmt->execute()) {
-                            echo "<div class='alert alert-success mt-3'>Usuário inserido com sucesso!</div>";
-                        } else {
-                            echo "<div class='alert alert-danger mt-3'>Erro ao inserir o usuário.</div>";
-                        }
-                    } catch (PDOException $e) {
-                        echo "<div class='alert alert-danger mt-3'>Erro de conexão: " . $e->getMessage() . "</div>";
+                    if ($stmt->execute()) {
+                        echo "<div class='alert alert-success mt-3'>Usuário inserido com sucesso!</div>";
+                    } else {
+                        echo "<div class='alert alert-danger mt-3'>Erro ao inserir o usuário.</div>";
                     }
-                } else {
-                    echo "<div class='alert alert-danger mt-3'>Por favor, preencha todos os campos.</div>";
+                } catch (PDOException $e) {
+                    echo "<div class='alert alert-danger mt-3'>Erro de conexão: " . $e->getMessage() . "</div>";
                 }
+            } else {
+                echo "<div class='alert alert-danger mt-3'>Por favor, preencha todos os campos.</div>";
             }
-            ?>
-        </div>
+        }
+        ?>
     </div>
 
     <!-- Bootstrap JS -->
@@ -142,6 +147,19 @@
             // Alternar ícone
             togglePasswordIcon.classList.toggle('bi-eye');
             togglePasswordIcon.classList.toggle('bi-eye-slash');
+        });
+
+        // Botão de limpar
+        const clearButton = document.getElementById('clearButton');
+        const userForm = document.getElementById('userForm');
+
+        clearButton.addEventListener('click', function () {
+            userForm.reset();
+        });
+
+        // Limpar formulário ao carregar a página
+        window.addEventListener('load', function () {
+            userForm.reset();
         });
     </script>
 </body>
